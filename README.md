@@ -1,64 +1,68 @@
 # Corrupt File Checker
 
-## Description
-This script checks for corruption in video files using `ffmpeg` inside a Docker container. It supports scanning either a single file or an entire folder containing multiple video files. The results are logged in `corruption_log.txt`.
+This project uses Docker and ffmpeg to check video files for corruption. The script supports both single-file and multi-file modes, allowing you to scan individual videos or entire directories.
 
 ## Prerequisites
-- Python 3
-- Docker
-- `ffmpeg` (via `linuxserver/ffmpeg` Docker image)
 
-## Supported Formats
-- MP4
-- MKV
-- AVI
-- MOV
-- FLV
+- Python 3.x
+- Docker
+- ffmpeg
 
 ## Installation
+
 1. Clone the repository:
-   ```sh
-   git clone https://github.com/sigmaenigma/CorruptFileChecker.git
-   cd CorruptFileChecker
-   ```
-2. Ensure Docker is installed and running.
+    ```bash
+    git clone https://github.com/yourusername/video-corruption-checker.git
+    ```
+2. Navigate to the project directory:
+    ```bash
+    cd video-corruption-checker
+    ```
+3. Install any required Python packages (if applicable).
 
 ## Usage
-Run the script with either `single` or `multi` mode:
 
-- To check a single video file:
-  ```sh
-  python3 app.py single /path/to/video.mp4
-  ```
-- To scan an entire folder:
-  ```sh
-  python3 app.py multi /path/to/folder
-  ```
+### Single File Mode
 
-## Output
-The script logs the results in `corruption_log.txt`, indicating whether corruption was detected in each file.
+To check a single video file for corruption, run the following command:
+
+```bash
+python3 app.py -m single -f /path/to/video.mp4
+```
+
+### Multi File Mode
+
+To check all video files in a directory for corruption, run the following command:
+
+```bash
+python3 app.py -m multi -f /path/to/folder
+```
+
+## Arguments
+
+- `-m`, `--mode`: Mode of operation (`single` or `multi`).
+- `-f`, `--file`: Path to the video file or directory.
+
+## Log Output
+
+The script generates a log file named `corruption_log.txt` in the project directory. This file contains the results of the corruption checks, indicating whether each file is corrupted or not.
+
+## Example
+
+To check a single video file:
+```bash
+python3 app.py -m single -f /home/user/videos/movie.mp4
+```
+
+To check all video files in a directory:
+```bash
+python3 app.py -m multi -f /home/user/videos
+```
+
+## Contributing
+
+Feel free to fork this repository and submit pull requests. Any contributions to improve the script are welcome!
 
 ## License
 
-MIT License
-
-Copyright (c) 2025
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
+This project is licensed under the MIT License.
