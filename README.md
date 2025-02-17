@@ -1,4 +1,4 @@
-# Video Corruption Check
+# Corrupt File Checker
 
 ## Description
 This script checks for corruption in video files using `ffmpeg` inside a Docker container. It supports scanning either a single file or an entire folder containing multiple video files. The results are logged in `corruption_log.txt`.
