@@ -1,6 +1,6 @@
 import os
 import subprocess
-import sys
+import argparse
 
 # Log file
 LOGFILE = "corruption_log.txt"
@@ -33,12 +33,16 @@ def check_corruption(file):
         return False
 
 def main():
-    if len(sys.argv) < 3:
-        print("Usage: python3 app.py <single|multi> <file|folder path>")
-        sys.exit(1)
+    # Create argument parser
+    parser = argparse.ArgumentParser(description='Check video files for corruption using Docker and ffmpeg.')
+    parser.add_argument('-m', '--mode', choices=['single', 'multi'], required=True, help='Mode of operation: single file or multiple files in a directory')
+    parser.add_argument('-f', '--file', required=True, help='Path to the video file or directory')
 
-    mode = sys.argv[1]
-    path = sys.argv[2]
+    # Parse arguments
+    args = parser.parse_args()
+
+    mode = args.mode
+    path = args.file
 
     with open(LOGFILE, "w") as log_file:
         log_file.write("")
@@ -49,8 +53,6 @@ def main():
             check_corruption(path)
         else:
             print("Invalid file or unsupported format.")
-            sys.exit(1)
-
     elif mode == "multi":
         if os.path.isdir(path):
             for root, _, files in os.walk(path):
@@ -61,11 +63,8 @@ def main():
                         check_corruption(file_path)
         else:
             print("Invalid directory.")
-            sys.exit(1)
-
     else:
         print("Invalid mode. Use 'single' or 'multi'.")
-        sys.exit(1)
 
     print(f"Corruption check completed. Results are logged in {LOGFILE}.")
 
