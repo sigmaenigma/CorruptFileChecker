@@ -12,7 +12,7 @@ This project uses Docker and ffmpeg to check video files for corruption. The scr
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/video-corruption-checker.git
+    git clone https://github.com/sigmaenigma/CorruptFileChecker.git
     ```
 2. Navigate to the project directory:
     ```bash
